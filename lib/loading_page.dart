@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:oaseproject/mulai.dart';
 
@@ -35,10 +36,13 @@ class _loadingPageState extends State<loadingPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              "images/loading.png",
-              width: 170,
-              height: 195,
+            FadeInDown(
+              duration: Duration(seconds: 2),
+              child: Image.asset(
+                "images/loading.png",
+                width: 170,
+                height: 195,
+              ),
             ),
           ],
         ),
