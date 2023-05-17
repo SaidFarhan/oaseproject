@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oaseproject/constans.dart';
 import 'package:oaseproject/loading_page.dart';
+import 'package:oaseproject/widgets/buttonMenu.dart';
 import 'remote.dart';
 
 class Menu extends StatelessWidget {
@@ -26,92 +27,45 @@ class Menu extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  "images/profile.png",
-                  cacheWidth: 129,
-                  cacheHeight: 129,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(200),
+                  child: Image.asset(
+                    "images/person.jpg",
+                    cacheWidth: 129,
+                    cacheHeight: 129,
+                  ),
                 ),
                 SizedBox(height: 2),
                 Text("Said Farhan",
                     textAlign: TextAlign.center,
                     style: textstyle1.copyWith(fontSize: 26, fontWeight: bold)),
                 SizedBox(height: 50),
-                Material(
-                  borderRadius: BorderRadius.circular(22),
-                  elevation: 5,
-                  child: Container(
-                    width: 110,
-                    height: 110,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
-                      color: Colors.white,
-                    ),
-                    child: Material(
-                      borderRadius: BorderRadius.circular(22),
-                      color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: Color(0xff5AEEF4),
-                        borderRadius: BorderRadius.circular(22),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) {
-                              return const remote();
-                            }),
-                          );
-                        },
-                        child: Image.asset(
-                          "images/signal.png",
-                          cacheWidth: 60,
-                          cacheHeight: 60,
-                        ),
-                      ),
-                    ),
-                  ),
+                button(
+                  image: "images/signal.png",
+                  text: "Remote",
+                  color: Colors.white,
+                  ontap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return remote();
+                      }),
+                    );
+                  },
                 ),
-                SizedBox(height: 2),
-                Text(
-                  "Remote",
-                  style: textstyle1.copyWith(fontSize: 23, fontWeight: bold),
-                ),
-                SizedBox(height: 30),
-                Material(
-                  borderRadius: BorderRadius.circular(22),
-                  elevation: 5,
-                  child: Container(
-                    width: 110,
-                    height: 110,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
-                      color: Colors.white,
-                    ),
-                    child: Material(
-                      borderRadius: BorderRadius.circular(22),
-                      color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: Color(0xff5AEEF4),
-                        borderRadius: BorderRadius.circular(22),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) {
-                              return loadingPage();
-                            }),
-                          );
-                        },
-                        child: Image.asset(
-                          "images/remote.png",
-                          cacheWidth: 60,
-                          cacheHeight: 60,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 2),
-                Text(
-                  "Mulai",
-                  style: textstyle1.copyWith(fontSize: 23, fontWeight: bold),
+                SizedBox(height: 40),
+                button(
+                  image: "images/remote.png",
+                  text: "Mulai",
+                  color: Colors.white,
+                  ontap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return loadingPage();
+                      }),
+                    );
+                  },
                 ),
               ],
             ),
