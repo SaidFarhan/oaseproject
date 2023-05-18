@@ -9,10 +9,14 @@ class button extends StatelessWidget {
     required this.text,
     required this.color,
     required this.ontap,
+    required this.sizebutton,
+    required this.fontsize,
   });
   String image;
   String text;
   Color? color;
+  double? sizebutton;
+  double? fontsize;
   void Function() ontap;
 
   @override
@@ -23,8 +27,8 @@ class button extends StatelessWidget {
           borderRadius: BorderRadius.circular(22),
           elevation: 5,
           child: Container(
-            width: 110,
-            height: 110,
+            width: sizebutton,
+            height: sizebutton,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
               gradient: color == null
@@ -54,7 +58,7 @@ class button extends StatelessWidget {
         SizedBox(height: 5),
         Text(
           text,
-          style: textstyle1.copyWith(fontSize: 23, fontWeight: bold),
+          style: textstyle1.copyWith(fontSize: fontsize, fontWeight: bold),
         ),
       ],
     );

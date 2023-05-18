@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:oaseproject/constans.dart';
 import 'package:oaseproject/loading_page.dart';
+import 'package:oaseproject/login_page.dart';
+import 'package:oaseproject/mulai.dart';
 import 'package:oaseproject/widgets/buttonMenu.dart';
+import 'package:oaseproject/widgets/profile.dart';
 import 'remote.dart';
 
 class Menu extends StatelessWidget {
@@ -27,18 +30,11 @@ class Menu extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(200),
-                  child: Image.asset(
-                    "images/person.jpg",
-                    cacheWidth: 129,
-                    cacheHeight: 129,
-                  ),
-                ),
-                SizedBox(height: 2),
-                Text("Said Farhan",
-                    textAlign: TextAlign.center,
-                    style: textstyle1.copyWith(fontSize: 26, fontWeight: bold)),
+                profile(
+                    image: "images/profile.png",
+                    text: "Said Farhan",
+                    cacheimgsize: 129,
+                    fontsize: 26.62),
                 SizedBox(height: 50),
                 button(
                   image: "images/signal.png",
@@ -52,6 +48,8 @@ class Menu extends StatelessWidget {
                       }),
                     );
                   },
+                  sizebutton: 120,
+                  fontsize: 22.62,
                 ),
                 SizedBox(height: 40),
                 button(
@@ -66,6 +64,8 @@ class Menu extends StatelessWidget {
                       }),
                     );
                   },
+                  sizebutton: 120,
+                  fontsize: 22.62,
                 ),
               ],
             ),
