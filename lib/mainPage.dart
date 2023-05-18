@@ -30,9 +30,14 @@ class MainPage extends StatelessWidget {
               ],
             ),
             Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                color: Colors.white.withOpacity(0.5),
+              ),
+              child: Image.asset("images/tambah.png"),
               height: 60,
               width: 60,
-              color: Colors.white.withOpacity(0.5),
+              // color: Colors.white,
             )
           ],
         ),

@@ -38,32 +38,35 @@ class remote extends StatelessWidget {
                     style: textstyle1.copyWith(fontSize: 32, fontWeight: bold)),
                 SizedBox(height: 50),
                 button(
-                  image: "images/power.png",
-                  text: "Kunci Ponsel",
-                  color: Colors.white,
-                  ontap: () {
-                    AwesomeDialog(
-                      context: context,
-                      barrierColor: Colors.transparent,
-                      dialogType: DialogType.success,
-                      btnOkColor: Color(0xff0092ff),
-                      transitionAnimationDuration: Duration(seconds: 1),
-                      animType: AnimType.bottomSlide,
-                      showCloseIcon: true,
-                      title: "Sukses",
-                      desc: "Berhasil mengunci ponsel anda",
-                      btnOkOnPress: () {
-                        Navigator.pop(context);
-                      },
-                    ).show();
-                  },
-                ),
+                    image: "images/power.png",
+                    text: "Kunci Ponsel",
+                    color: Colors.white,
+                    ontap: () {
+                      AwesomeDialog(
+                        context: context,
+                        barrierColor: Colors.transparent,
+                        dialogType: DialogType.success,
+                        btnOkColor: Color(0xff0092ff),
+                        transitionAnimationDuration: Duration(seconds: 1),
+                        animType: AnimType.bottomSlide,
+                        showCloseIcon: true,
+                        title: "Sukses",
+                        desc: "Berhasil mengunci ponsel anda",
+                        btnOkOnPress: () {
+                          Navigator.pop(context);
+                        },
+                      ).show();
+                    },
+                    sizebutton: 120,
+                    fontsize: 22.62),
                 SizedBox(height: 30),
                 button(
                     image: "images/riwayat.png",
                     text: "Riwayat",
                     color: Colors.white,
-                    ontap: () {})
+                    ontap: () {},
+                    sizebutton: 120,
+                    fontsize: 22.62),
               ],
             ),
           ),
