@@ -12,7 +12,19 @@ class mulaiPage extends StatefulWidget {
 }
 
 class _mulaiPageState extends State<mulaiPage> {
+  // bool _signInLoading = false;
+  // bool _signUpLoading = false;
+  // final _usernameController = TextEditingController();
+  // final _passwordController = TextEditingController();
   int index = 1;
+
+  // @override
+  // void dispose() {
+  //   _usernameController.dispose();
+  //   _passwordController.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

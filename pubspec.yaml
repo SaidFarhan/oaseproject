@@ -39,6 +39,7 @@ dependencies:
   awesome_dialog: ^3.0.2
   convex_bottom_bar: ^3.2.0
   animate_do: ^3.0.2
+  supabase_flutter: ^1.9.2
 
 dev_dependencies:
   flutter_test:
