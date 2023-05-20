@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oaseproject/gantisandi.dart';
+import 'package:oaseproject/utils/common.dart';
 import 'package:oaseproject/widgets/buttonMenu.dart';
 import 'package:oaseproject/widgets/profile.dart';
 
@@ -70,7 +71,10 @@ class settingPage extends StatelessWidget {
                           image: "images/changeacc.png",
                           text: "Ganti Akun",
                           color: null,
-                          ontap: () {},
+                          ontap: () async {
+                            await client.auth.signOut();
+                            Navigator.pop(context);
+                          },
                           sizebutton: 80,
                           fontsize: 12.24,
                         ),

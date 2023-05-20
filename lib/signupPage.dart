@@ -1,12 +1,29 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:oaseproject/login_page.dart';
+import 'package:oaseproject/utils/common.dart';
 
 import 'constans.dart';
 
-class signupPage extends StatelessWidget {
+class signupPage extends StatefulWidget {
   const signupPage({super.key});
 
+  @override
+  State<signupPage> createState() => _signupPageState();
+}
+
+class _signupPageState extends State<signupPage> {
+  bool _signUpLoading = false;
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+   @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +42,9 @@ class signupPage extends StatelessWidget {
           child: Center(
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 31),
-              child: Column(
+              child: Form(
+                key: _formKey,
+                child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
@@ -45,7 +64,7 @@ class signupPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(48),
                       color: textcolor2.withOpacity(0.2),
                     ),
-                    child: TextField(
+                    child: TextFormField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Nama",
@@ -57,6 +76,13 @@ class signupPage extends StatelessWidget {
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 17),
                       ),
+                      validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'masukkan nama';
+                          }
+                          return null;
+                        },
+                        controller: _usernameController,
                     ),
                   ),
                   SizedBox(height: 15),
@@ -66,7 +92,7 @@ class signupPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(48),
                       color: textcolor2.withOpacity(0.2),
                     ),
-                    child: TextField(
+                    child: TextFormField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Sandi",
@@ -78,6 +104,12 @@ class signupPage extends StatelessWidget {
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 17),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'masukkan password';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   SizedBox(height: 15),
@@ -87,7 +119,7 @@ class signupPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(48),
                       color: textcolor2.withOpacity(0.2),
                     ),
-                    child: TextField(
+                    child: TextFormField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Masukkan Ulang Sandi",
@@ -122,21 +154,46 @@ class signupPage extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(48))),
                       ),
-                      onPressed: () {
-                        AwesomeDialog(
-                          context: context,
-                          barrierColor: Colors.transparent,
-                          dialogType: DialogType.success,
-                          btnOkColor: Color(0xff0092ff),
-                          transitionAnimationDuration: Duration(seconds: 1),
-                          animType: AnimType.bottomSlide,
-                          showCloseIcon: true,
-                          title: "Sukses",
-                          desc: "Berhasil membuat akun",
-                          btnOkOnPress: () {
-                            Navigator.pop(context);
-                          },
-                        ).show();
+                      onPressed: () async {
+                        final isValid = _formKey.currentState?.validate();
+                          if (isValid != true) {
+                            return;
+                          }
+                          setState(() {
+                            _signUpLoading = true;
+                          });
+                          try {
+                            await client.auth.signUp(
+                              email: _usernameController.text,
+                              password: _usernameController.text,
+                              );
+                              AwesomeDialog(
+                                context: context,
+                                barrierColor: Colors.transparent,
+                                dialogType: DialogType.success,
+                                btnOkColor: Color(0xff0092ff),
+                                transitionAnimationDuration: Duration(seconds: 1),
+                                animType: AnimType.bottomSlide,
+                                showCloseIcon: true,
+                                title: "Sukses",
+                                desc: "Berhasil membuat akun",
+                                btnOkOnPress: () {
+                                   setState(() {
+                                    _signUpLoading = false;
+                                  });
+                                  Navigator.pop(context);
+                                },
+                              ).show();
+                          } catch (e) {
+                            ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                                content: Text('Buat akun gagal'),
+                                backgroundColor: Colors.redAccent,
+                              ));
+                          }
+                           setState(() {
+                            _signUpLoading = false;
+                          });
                       },
                       child: Text(
                         "Buat Akun",
@@ -173,6 +230,7 @@ class signupPage extends StatelessWidget {
                   ),
                 ],
               ),
+                ),
             ),
           ),
         ),
@@ -180,3 +238,4 @@ class signupPage extends StatelessWidget {
     );
   }
 }
+
