@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oaseproject/constans.dart';
 import 'package:oaseproject/menu.dart';
 import 'package:oaseproject/signupPage.dart';
+import 'package:oaseproject/utils/common.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,6 +13,18 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool showpass = false;
+  bool _signInLoading = false;
+  bool _signUpLoading = false;
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+   @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Center(
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 31),
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -51,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(48),
                       color: textcolor2.withOpacity(0.2),
                     ),
-                    child: TextField(
+                    child: TextFormField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Nama",
@@ -63,7 +77,15 @@ class _LoginPageState extends State<LoginPage> {
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 17),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'masukkan nama';
+                        }
+                        return null;
+                      },
+                      controller: _usernameController,
                     ),
+
                   ),
                   SizedBox(height: 15),
                   Container(
@@ -72,7 +94,14 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(48),
                       color: textcolor2.withOpacity(0.2),
                     ),
-                    child: TextField(
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'masukkan password';
+                        }
+                        return null;
+                      },
+                      controller: _passwordController,
                       obscureText: showpass,
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -110,13 +139,27 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(48))),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return const Menu();
-                          }),
-                        );
+                      onPressed: () async {
+                        final isValid = _formKey.currentState?.validate();
+                        if (isValid != true) {
+                          return;
+                        }
+                        setState(() {
+                          _signInLoading = true;
+                        });
+                        try {
+                          await client.auth.signInWithPassword(
+                            email: _usernameController.text,
+                            password: _usernameController.text,
+                            );
+                        } catch (e) {
+                          ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                              content: Text('login gagal'),
+                              backgroundColor: Colors.redAccent,
+                            ));
+                        }
+                        // Navigator.push( context, MaterialPageRoute(builder: (context) { return const Menu(); }), );
                       },
                       child: Text(
                         "Masuk",
