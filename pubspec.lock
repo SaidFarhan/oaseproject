@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  better_textfield:
+    dependency: "direct main"
+    description:
+      name: better_textfield
+      sha256: f2dbd21f2e03ead32fa4a551a38e99ac70bd10437253e3810213802169d63334
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   boolean_selector:
     dependency: transitive
     description:
