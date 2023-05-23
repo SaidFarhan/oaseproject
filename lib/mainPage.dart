@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:oaseproject/chooseApp.dart';
+import 'package:oaseproject/controller/lockAppController.dart';
+import 'package:oaseproject/widgets/buttonAddApp.dart';
 
 import 'constans.dart';
 
@@ -29,15 +32,17 @@ class MainPage extends StatelessWidget {
                     style: textstyle1.copyWith(fontSize: 46, fontWeight: bold)),
               ],
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                color: Colors.white.withOpacity(0.5),
-              ),
-              child: Image.asset("images/tambah.png"),
-              height: 60,
-              width: 60,
-              // color: Colors.white,
+            // color: Colors.white,
+            buttonAddApp(
+              icon: "images/tambah.png",
+              ontap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return chooseApp();
+                  }),
+                );
+              },
             )
           ],
         ),

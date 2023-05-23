@@ -12,14 +12,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool showpass = false;
+  bool showpass = true;
   bool _signInLoading = false;
   // bool _signUpLoading = false;
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-   @override
+  @override
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
@@ -75,8 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: bold,
                             color: textcolor2.withOpacity(0.6),
                           ),
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 17),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -86,7 +86,6 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         controller: _usernameController,
                       ),
-
                     ),
                     SizedBox(height: 15),
                     Container(
@@ -112,8 +111,8 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: bold,
                             color: textcolor2.withOpacity(0.6),
                           ),
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 17),
                           suffixIcon: IconButton(
                             icon: showpass
                                 ? Icon(Icons.visibility_off)
@@ -152,13 +151,13 @@ class _LoginPageState extends State<LoginPage> {
                             await client.auth.signInWithPassword(
                               email: _usernameController.text,
                               password: _usernameController.text,
-                              );
+                            );
                           } catch (e) {
                             ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                                content: Text('login gagal'),
-                                backgroundColor: Colors.redAccent,
-                              ));
+                                .showSnackBar(const SnackBar(
+                              content: Text('login gagal'),
+                              backgroundColor: Colors.redAccent,
+                            ));
                           }
                           // Navigator.push( context, MaterialPageRoute(builder: (context) { return const Menu(); }), );
                         },

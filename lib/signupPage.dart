@@ -18,12 +18,13 @@ class _signupPageState extends State<signupPage> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-   @override
+  @override
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,117 +46,117 @@ class _signupPageState extends State<signupPage> {
               child: Form(
                 key: _formKey,
                 child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "images/image1.png",
-                    cacheWidth: 121,
-                    cacheHeight: 120,
-                  ),
-                  SizedBox(height: 20),
-                  Text("Device For Child",
-                      textAlign: TextAlign.center,
-                      style: whitetextstyle.copyWith(
-                          fontSize: 34, fontWeight: bold)),
-                  SizedBox(height: 38),
-                  Container(
-                    width: 310,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(48),
-                      color: textcolor2.withOpacity(0.2),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "images/image1.png",
+                      cacheWidth: 121,
+                      cacheHeight: 120,
                     ),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Nama",
-                        hintStyle: textstyle1.copyWith(
-                          fontSize: 16,
-                          fontWeight: bold,
-                          color: textcolor2.withOpacity(0.6),
-                        ),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+                    SizedBox(height: 20),
+                    Text("Device For Child",
+                        textAlign: TextAlign.center,
+                        style: whitetextstyle.copyWith(
+                            fontSize: 34, fontWeight: bold)),
+                    SizedBox(height: 38),
+                    Container(
+                      width: 310,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(48),
+                        color: textcolor2.withOpacity(0.2),
                       ),
-                      validator: (value) {
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Nama",
+                          hintStyle: textstyle1.copyWith(
+                            fontSize: 16,
+                            fontWeight: bold,
+                            color: textcolor2.withOpacity(0.6),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 17),
+                        ),
+                        validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'masukkan nama';
                           }
                           return null;
                         },
                         controller: _usernameController,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 15),
-                  Container(
-                    width: 310,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(48),
-                      color: textcolor2.withOpacity(0.2),
-                    ),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Sandi",
-                        hintStyle: textstyle1.copyWith(
-                          fontSize: 16,
-                          fontWeight: bold,
-                          color: textcolor2.withOpacity(0.6),
+                    SizedBox(height: 15),
+                    Container(
+                      width: 310,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(48),
+                        color: textcolor2.withOpacity(0.2),
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Sandi",
+                          hintStyle: textstyle1.copyWith(
+                            fontSize: 16,
+                            fontWeight: bold,
+                            color: textcolor2.withOpacity(0.6),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 17),
                         ),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'masukkan password';
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'masukkan password';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
-                  SizedBox(height: 15),
-                  Container(
-                    width: 310,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(48),
-                      color: textcolor2.withOpacity(0.2),
-                    ),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Masukkan Ulang Sandi",
-                        hintStyle: textstyle1.copyWith(
-                          fontSize: 16,
-                          fontWeight: bold,
-                          color: textcolor2.withOpacity(0.6),
+                    SizedBox(height: 15),
+                    Container(
+                      width: 310,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(48),
+                        color: textcolor2.withOpacity(0.2),
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Masukkan Ulang Sandi",
+                          hintStyle: textstyle1.copyWith(
+                            fontSize: 16,
+                            fontWeight: bold,
+                            color: textcolor2.withOpacity(0.6),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 17),
                         ),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 17),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 15),
-                  Container(
-                    width: 310,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(48),
-                      color: textcolor2.withOpacity(0.2),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  Container(
-                    width: double.infinity,
-                    height: 51,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: textcolor,
-                        elevation: 0,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(48))),
+                    SizedBox(height: 15),
+                    Container(
+                      width: 310,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(48),
+                        color: textcolor2.withOpacity(0.2),
                       ),
-                      onPressed: () async {
-                        final isValid = _formKey.currentState?.validate();
+                    ),
+                    SizedBox(height: 15),
+                    Container(
+                      width: double.infinity,
+                      height: 51,
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: textcolor,
+                          elevation: 0,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(48))),
+                        ),
+                        onPressed: () async {
+                          final isValid = _formKey.currentState?.validate();
                           if (isValid != true) {
                             return;
                           }
@@ -166,71 +167,72 @@ class _signupPageState extends State<signupPage> {
                             await client.auth.signUp(
                               email: _usernameController.text,
                               password: _usernameController.text,
-                              );
-                              AwesomeDialog(
-                                context: context,
-                                barrierColor: Colors.transparent,
-                                dialogType: DialogType.success,
-                                btnOkColor: Color(0xff0092ff),
-                                transitionAnimationDuration: Duration(seconds: 1),
-                                animType: AnimType.bottomSlide,
-                                showCloseIcon: true,
-                                title: "Sukses",
-                                desc: "Berhasil membuat akun",
-                                btnOkOnPress: () {
-                                   setState(() {
-                                    _signUpLoading = false;
-                                  });
-                                  Navigator.pop(context);
-                                },
-                              ).show();
+                            );
+                            AwesomeDialog(
+                              context: context,
+                              barrierColor: Colors.transparent,
+                              dialogType: DialogType.success,
+                              btnOkColor: Color(0xff0092ff),
+                              transitionAnimationDuration: Duration(seconds: 1),
+                              animType: AnimType.bottomSlide,
+                              showCloseIcon: true,
+                              title: "Sukses",
+                              desc:
+                                  "Akun berhasil dibuat, silahkan cek Email untuk verifikasi akun anda!",
+                              btnOkOnPress: () {
+                                setState(() {
+                                  _signUpLoading = false;
+                                });
+                                Navigator.pop(context);
+                              },
+                            ).show();
                           } catch (e) {
                             ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                                content: Text('Buat akun gagal'),
-                                backgroundColor: Colors.redAccent,
-                              ));
+                                .showSnackBar(const SnackBar(
+                              content: Text('Buat akun gagal'),
+                              backgroundColor: Colors.redAccent,
+                            ));
                           }
-                           setState(() {
+                          setState(() {
                             _signUpLoading = false;
                           });
-                      },
-                      child: Text(
-                        "Buat Akun",
-                        style: bluetextstyle.copyWith(
-                            fontSize: 16, fontWeight: bold),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 11),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Sudah punya akun?",
-                        style: textstyle1.copyWith(
-                          fontSize: 12,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) {
-                              return LoginPage();
-                            }),
-                          );
                         },
                         child: Text(
-                          "Masuk.",
-                          style: textstylelink.copyWith(fontSize: 12),
+                          "Buat Akun",
+                          style: bluetextstyle.copyWith(
+                              fontSize: 16, fontWeight: bold),
                         ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                      ),
+                    ),
+                    SizedBox(height: 11),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Sudah punya akun?",
+                          style: textstyle1.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return LoginPage();
+                              }),
+                            );
+                          },
+                          child: Text(
+                            "Masuk.",
+                            style: textstylelink.copyWith(fontSize: 12),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
                 ),
+              ),
             ),
           ),
         ),
@@ -238,4 +240,3 @@ class _signupPageState extends State<signupPage> {
     );
   }
 }
-

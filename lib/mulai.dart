@@ -23,8 +23,8 @@ class _mulaiPageState extends State<mulaiPage> {
           // backgroundColor: Colors.white,
           height: 60,
           items: [
-            TabItem(icon: Icons.settings),
-            TabItem(icon: Icons.lock),
+            TabItem(icon: Icons.settings_outlined),
+            TabItem(icon: Icons.lock_open),
             TabItem(icon: Icons.logout),
           ],
           initialActiveIndex: index,
