@@ -111,6 +111,7 @@ class _signupPageState extends State<signupPage> {
                           }
                           return null;
                         },
+                        controller: _passwordController,
                       ),
                     ),
                     SizedBox(height: 15),
@@ -163,10 +164,11 @@ class _signupPageState extends State<signupPage> {
                           setState(() {
                             _signUpLoading = true;
                           });
+                          // print(_passwordController.text);
                           try {
                             await client.auth.signUp(
                               email: _usernameController.text,
-                              password: _usernameController.text,
+                              password: _passwordController.text,
                             );
                             AwesomeDialog(
                               context: context,
@@ -187,6 +189,7 @@ class _signupPageState extends State<signupPage> {
                               },
                             ).show();
                           } catch (e) {
+                            // print(e.toString());
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
                               content: Text('Buat akun gagal'),
@@ -197,11 +200,13 @@ class _signupPageState extends State<signupPage> {
                             _signUpLoading = false;
                           });
                         },
-                        child: Text(
-                          "Buat Akun",
-                          style: bluetextstyle.copyWith(
-                              fontSize: 16, fontWeight: bold),
-                        ),
+                        child: _signUpLoading
+                            ? CircularProgressIndicator()
+                            : Text(
+                                "Buat Akun",
+                                style: bluetextstyle.copyWith(
+                                    fontSize: 16, fontWeight: bold),
+                              ),
                       ),
                     ),
                     SizedBox(height: 11),

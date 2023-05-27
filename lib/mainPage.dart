@@ -21,31 +21,38 @@ class MainPage extends StatelessWidget {
           end: Alignment.bottomCenter,
         ),
       ),
-      child: Center(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 200),
-                Text("HI SAID",
-                    style: textstyle1.copyWith(fontSize: 46, fontWeight: bold)),
-              ],
+      child: Stack(
+        children: [
+          // color: Colors.white,
+          Expanded(
+            child: Center(
+              child: buttonAddApp2(
+                icon: "images/tambah.png",
+                ontap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return chooseApp();
+                    }),
+                  );
+                },
+              ),
             ),
-            // color: Colors.white,
-            buttonAddApp(
-              icon: "images/tambah.png",
-              ontap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return chooseApp();
-                  }),
-                );
-              },
-            )
-          ],
-        ),
+          ),
+          Column(
+            children: [
+              SizedBox(height: 80),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("HI SAID",
+                      style:
+                          textstyle1.copyWith(fontSize: 46, fontWeight: bold)),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -14,7 +14,7 @@ TextStyle bluetextstyle = GoogleFonts.dmSans(
   color: textcolor1,
 );
 
-TextStyle textstyle1 = GoogleFonts.poppins(
+TextStyle textstyle1 = GoogleFonts.epilogue(
   color: textcolor2,
 );
 

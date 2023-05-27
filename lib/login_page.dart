@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                           try {
                             await client.auth.signInWithPassword(
                               email: _usernameController.text,
-                              password: _usernameController.text,
+                              password: _passwordController.text,
                             );
                           } catch (e) {
                             ScaffoldMessenger.of(context)
@@ -161,11 +161,13 @@ class _LoginPageState extends State<LoginPage> {
                           }
                           // Navigator.push( context, MaterialPageRoute(builder: (context) { return const Menu(); }), );
                         },
-                        child: Text(
-                          "Masuk",
-                          style: bluetextstyle.copyWith(
-                              fontSize: 16, fontWeight: bold),
-                        ),
+                        child: _signInLoading
+                            ? CircularProgressIndicator()
+                            : Text(
+                                "Masuk",
+                                style: bluetextstyle.copyWith(
+                                    fontSize: 16, fontWeight: bold),
+                              ),
                       ),
                     ),
                     SizedBox(height: 11),

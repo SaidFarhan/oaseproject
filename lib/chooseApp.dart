@@ -4,6 +4,7 @@ import 'package:group_button/group_button.dart';
 import 'package:oaseproject/constans.dart';
 import 'package:oaseproject/controller/lockAppController.dart';
 import 'package:oaseproject/widgets/buttonAddApp.dart';
+import 'package:selectable_box/selectable_box.dart';
 
 class chooseApp extends ConsumerWidget {
   const chooseApp({super.key});
@@ -11,6 +12,7 @@ class chooseApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final lockappstate = ref.watch(getinstallerAppProvider);
+    final pilihapp = ref.watch(lockAppProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -28,6 +30,7 @@ class chooseApp extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text("Pilih aplikasi yang"),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -44,9 +47,29 @@ class chooseApp extends ConsumerWidget {
                       itemBuilder: (context, i) {
                         return Column(
                           children: [
-                            buttonAddApp(
-                                ontap: () {}, icon: "images/tambah.png"),
-                            Text(app[i].appName)
+                            Flexible(
+                              child: SelectableBox(
+                                height: 60,
+                                width: 65,
+                                onTap: () {
+                                  if (app[i].isselected == true) {
+                                    pilihapp.unselectedapp(app[i]);
+                                  } else {
+                                    pilihapp.selectedapp(app[i]);
+                                  }
+                                },
+                                isSelected: app[i].isselected,
+                                child: buttonAddApp(
+                                  ontap: () {},
+                                  icon: app[i].appicon!.icon,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              app[i].appname?.appName ?? "",
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                            )
                           ],
                         );
                       },

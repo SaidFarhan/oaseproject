@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:oaseproject/mainPage.dart';
 import 'package:oaseproject/menu.dart';
 import 'login_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -58,7 +59,7 @@ class _MyWidgetState extends State<MyWidget> {
     return Scaffold(
       body: _user == null
           ? const Menu()
-          : const Menu(), //ubah balek loginpage() nnti!!!!!
+          : const Menu(), //ubah balek loginpage() nnti!!!!! / Menu()
     );
   }
 }
