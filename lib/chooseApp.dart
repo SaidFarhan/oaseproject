@@ -30,7 +30,19 @@ class chooseApp extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Pilih aplikasi yang"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Pilih aplikasi Yang Anda Inginkan",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Colors.white),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -81,6 +93,21 @@ class chooseApp extends ConsumerWidget {
                   loading: () => const CircularProgressIndicator(),
                 ),
               ),
+              SizedBox(height: 20),
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(60),
+                    color: Colors.white,
+                  ),
+                  child: Image.asset("images/centang.png"),
+                ),
+              )
             ],
           ),
         ),
