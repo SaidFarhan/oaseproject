@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:oaseproject/literasiPage/literasi1.dart';
+import 'package:oaseproject/loading_page.dart';
 import 'package:oaseproject/mainPage.dart';
 import 'package:oaseproject/menu.dart';
+import 'package:oaseproject/widgets/literasiWidget.dart';
 import 'login_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:oaseproject/utils/common.dart';
@@ -58,7 +61,7 @@ class _MyWidgetState extends State<MyWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _user == null
-          ? const Menu()
+          ? const literasi1()
           : const Menu(), //ubah balek loginpage() nnti!!!!! / Menu()
     );
   }

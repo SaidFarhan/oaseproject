@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:group_button/group_button.dart';
 import 'package:oaseproject/constans.dart';
+import 'package:oaseproject/controller/appselec_controller.dart';
 import 'package:oaseproject/controller/lockAppController.dart';
 import 'package:oaseproject/widgets/buttonAddApp.dart';
 import 'package:selectable_box/selectable_box.dart';
@@ -30,17 +31,23 @@ class chooseApp extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Pilih aplikasi Yang Anda Inginkan",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                        color: Colors.white),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        "Pilih aplikasi Yang Anda Inginkan",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 10),
               Container(
@@ -96,7 +103,28 @@ class chooseApp extends ConsumerWidget {
               SizedBox(height: 20),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                  // show loading
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                  ref
+                      .read(AppSelecProvider.notifier)
+                      .insert_dataapp(pilihapp.selectedApp)
+                      .then((_) {
+                    Navigator.pop(context);
+                    ref.refresh(AppSelecProvider);
+                    Navigator.pop(context);
+                  }).onError((error, stackTrace) {
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("${error.toString()}"),
+                      backgroundColor: Colors.redAccent,
+                    ));
+                  });
                 },
                 child: Container(
                   height: 60,

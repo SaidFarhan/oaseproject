@@ -32,7 +32,7 @@ class Menu extends StatelessWidget {
               children: [
                 profile(
                     image: "images/profile.png",
-                    text: "Said Farhan",
+                    text: "User 10101",
                     cacheimgsize: 129,
                     fontsize: 26.62),
                 SizedBox(height: 50),

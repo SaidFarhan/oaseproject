@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:oaseproject/alarmPage.dart';
 import 'package:oaseproject/gantisandi.dart';
+import 'package:oaseproject/login_page.dart';
 import 'package:oaseproject/utils/common.dart';
 import 'package:oaseproject/widgets/buttonMenu.dart';
 import 'package:oaseproject/widgets/profile.dart';
@@ -73,7 +75,12 @@ class settingPage extends StatelessWidget {
                           color: null,
                           ontap: () async {
                             await client.auth.signOut();
-                            Navigator.pop(context);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return LoginPage();
+                              }),
+                            );
                           },
                           sizebutton: 80,
                           fontsize: 12.24,
@@ -90,7 +97,14 @@ class settingPage extends StatelessWidget {
                               image: "images/timer.png",
                               text: "Timer",
                               color: null,
-                              ontap: () {},
+                              ontap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return alarmPage();
+                                  }),
+                                );
+                              },
                               sizebutton: 80,
                               fontsize: 12.24,
                             ),

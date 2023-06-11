@@ -3,47 +3,59 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:installed_apps/app_info.dart';
 import 'package:installed_apps/installed_apps.dart';
+import 'package:oaseproject/utils/common.dart';
 import 'package:oaseproject/widgets/profile.dart';
 
-class appinfo {
+class Appinfo {
   bool isselected;
   Application? appname;
   ApplicationWithIcon? appicon;
-  appinfo(this.appname, this.appicon, {this.isselected = false});
+  Appinfo(this.appname, this.appicon, {this.isselected = false});
 }
 
 class LockApp extends ChangeNotifier {
-  List<appinfo> selectedApp = [];
+  List<Appinfo> selectedApp = [];
+  bool lockbtn = false;
 
-  void selectedapp(appinfo select) {
+  void afterLock() {
+    lockbtn = !lockbtn;
+    notifyListeners();
+  }
+
+  void selectedapp(Appinfo select) {
     select.isselected = true;
     selectedApp.add(select);
     notifyListeners();
     print(selectedApp.length);
+    print(client.auth.currentUser?.id);
+    print(select.appicon?.appName);
+    print(select.appicon?.packageName);
+    print(select.appicon?.icon);
+    // print(select.appname);
   }
 
-  void unselectedapp(appinfo unselect) {
+  void unselectedapp(Appinfo unselect) {
     unselect.isselected = false;
     selectedApp.remove(unselect);
     notifyListeners();
     print(selectedApp.length);
   }
 
-  bool isSelected(appinfo getApp) {
+  bool isSelected(Appinfo getApp) {
     bool dipilih = selectedApp.contains(getApp);
     print(dipilih);
     return dipilih;
   }
 
-  Future<List<appinfo>> getinstallerApp() async {
+  Future<List<Appinfo>> getinstallerApp() async {
     final getapp = await DeviceApps.getInstalledApplications(
       includeAppIcons: true,
       includeSystemApps: true,
       onlyAppsWithLaunchIntent: true,
     );
-    List<appinfo> tempapp = [];
+    List<Appinfo> tempapp = [];
     for (var i in getapp) {
-      var app = appinfo(null, null);
+      var app = Appinfo(null, null);
       if (i is ApplicationWithIcon) {
         app.appicon = i;
         // print(i.icon);
@@ -64,7 +76,7 @@ final lockAppProvider = ChangeNotifierProvider<LockApp>((ref) {
 });
 
 final getinstallerAppProvider =
-    FutureProvider.autoDispose<List<appinfo>>((ref) async {
+    FutureProvider.autoDispose<List<Appinfo>>((ref) async {
   final lockApp = LockApp();
   return await lockApp.getinstallerApp();
 });

@@ -45,10 +45,19 @@ dependencies:
   flutter_riverpod: ^2.3.6
   group_button: ^5.3.0
   selectable_box: ^1.0.8
+  flutter_analog_clock: ^1.0.3
+  shared_preferences: ^2.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "images/image1.png"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

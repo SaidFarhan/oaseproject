@@ -3,6 +3,7 @@ import 'package:oaseproject/constans.dart';
 import 'package:oaseproject/menu.dart';
 import 'package:oaseproject/signupPage.dart';
 import 'package:oaseproject/utils/common.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -140,6 +141,8 @@ class _LoginPageState extends State<LoginPage> {
                                   BorderRadius.all(Radius.circular(48))),
                         ),
                         onPressed: () async {
+                          final SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
                           final isValid = _formKey.currentState?.validate();
                           if (isValid != true) {
                             return;
@@ -152,12 +155,26 @@ class _LoginPageState extends State<LoginPage> {
                               email: _usernameController.text,
                               password: _passwordController.text,
                             );
+                            await prefs.setString(
+                                'password', _passwordController.text);
+                            setState(() {
+                              _signInLoading = false;
+                            });
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return Menu();
+                              }),
+                            );
                           } catch (e) {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
                               content: Text('login gagal'),
                               backgroundColor: Colors.redAccent,
                             ));
+                            setState(() {
+                              _signInLoading = false;
+                            });
                           }
                           // Navigator.push( context, MaterialPageRoute(builder: (context) { return const Menu(); }), );
                         },

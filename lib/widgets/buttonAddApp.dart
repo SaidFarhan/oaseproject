@@ -49,7 +49,7 @@ class buttonAddApp2 extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
-              color: Colors.white.withOpacity(0.5),
+              color: Colors.white,
             ),
             child: InkWell(
               splashColor: Color(0xff5AEEF4),
